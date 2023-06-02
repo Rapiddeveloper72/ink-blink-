@@ -1,0 +1,206 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            color: aliceblue;
+            font-family: sans-serif;
+        }
+        .about_us{
+            color: whitesmoke;
+            background-color: rgba(0, 0, 0,0.5);
+            margin: 10px auto;
+            border-radius: 6px;
+            width:60cqi;
+            padding: 1em;
+            overflow: hidden;
+        }
+        .about_us p {
+            text-align: left;
+            overflow: hidden;
+           text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 14;
+            -webkit-box-orient: vertical; 
+
+        }
+        .header{
+            background-image: linear-gradient(black ,#C7CC00 );
+            /* height: 100vh; */
+            container-type:inline-size;
+        }
+        .about_us h1{
+            margin-bottom: inherit;
+            color:yellow;
+            text-align: center;
+        }
+        .header h3{
+            color:gold;
+            font-family: 'MonteCarlo', cursive;
+            text-align: center;
+            margin-bottom: 5vh;
+            font-size: 4rem;
+            margin:5px;          
+        }
+        .lower_part{
+            height: 100vh;
+            background-color: rgb(0, 0, 0);
+            container-type:inline-size;
+            overflow: scroll;
+            background-image: url("static/writing_img.jpeg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            
+        }
+        .lower_part::-webkit-scrollbar {
+                display: none;
+        }
+        .lower_part h5 {
+            color: yellow;
+            font-size: 2em ;
+            text-align: center;
+            margin-bottom:20px;
+        }
+        .lower_part > p {
+            color: aliceblue;
+            text-align: center;
+        }
+        .contact_us{
+            width:100cqw;
+          padding:20px;
+            text-align:center;
+            margin-bottom:20px;
+            background-color: #E3E500;
+            box-shadow: 1px 1px rgba(252, 250, 250,1);
+            display: inline-block;
+        }
+        .contact_us span{
+            margin-top:1em;
+            margin-bottom: 1em;
+            color: black;
+        }
+        label{
+            color: black;
+        }
+        .contact_us button{
+            /* background-color: inherit; */
+            color:white;
+            padding:1cqh;
+            box-shadow: none;
+            height: 2em;
+            margin-top: 2em;
+            border-radius: 5px;
+            border: none;
+        }
+        .contact_us p {
+            color: black;
+        }
+        .blog_card{
+            /* display: inline-block; */
+            width:10cqi;
+            container-type:inline-size;
+            text-align:center;
+            margin: 2em;
+            background-color: white;
+            padding:10px;
+        }
+        .blog_card p {
+            color: black;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+        .blog_card a {
+            color: black;
+            text-decoration: none;
+        }
+        .blog_card img{
+            width: 100cqi;
+            height: 90.92px;
+        } 
+        .blogs{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 3px;
+            container-type:inline-size;
+            width: 100vw;
+            background-position: 100cqh;
+            /* background-color: aliceblue; */
+
+        }
+        .read_more_btn{
+            margin-top: 10px ;
+            padding:1cqh;
+            color: black;
+            border: 1px solid black;
+            background-color: inherit;
+        }
+        footer{
+            background-color: gold;
+            height: 10vh;
+        
+            text-align: center;
+            padding: 20px;
+        }
+        footer p,a{
+            color: black;
+            text-decoration: none;
+        }
+        @media(max-width:900px) {
+            .blogs{
+                display: block;
+            }
+            .blog_card{
+                height: 40cqi;
+                width: 70cqi;
+                container-type:inline-size;
+            }
+            .blog_card img{
+            height: 30cqi;
+            width: 40cqi;
+        }
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h3>Ink&blink</h3>
+    <div class="about_us">
+        <h1>About us</h1>
+        <p>Welcome to our Ink&blink! We are a community of passionate writers and avid readers. Our platform is dedicated to sharing insightful, informative, and engaging content on a wide range of topics. From lifestyle and travel to technology and entertainment, our team of writers brings unique perspectives each article. Join us as we explore, learn, and inspire together through the power of words.</p>
+    </div>
+</div>
+<div class="lower_part">
+        <div class="contact_us">
+            <span class="material-symbols-outlined">call</span><br>
+            <p>Contact us</p>
+            <p><label>Email</label>: example@gmail.com</p>
+        </div>
+    <h5>BLOG POSTS</h5>
+    <p>Here are all the blogs posted</p>
+    <div class="blogs">
+    {% for blog in blogs  %}
+        <div class = 'blog_card'>
+            <img src="{{blog.image.url}}" alt="unable to load">
+            <p>{{ blog.title }}</p>
+            <button class = 'read_more_btn'><a href="/read/{{ blog.title }}">Read more</a> </button>
+        </div>
+    {% endfor %}
+</div>
+<footer>
+    <p><a href="/privacy policy">Privacy-policy</a></p>
+    <p>Technical complaints: kumarshreyam09@gmail.com</p>
+</footer>
+</body>
+</html>

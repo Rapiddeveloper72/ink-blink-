@@ -1,0 +1,162 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        h1{
+            margin: 2rem;
+        }
+        body{
+          background-image: linear-gradient(45deg, rgb(239, 239, 239) 25%, rgba(239, 239, 239, 0) 25%, rgba(239, 239, 239, 0) 75%, rgb(239, 239, 239) 75%, rgb(239, 239, 239)), linear-gradient(45deg, rgb(239, 239, 239) 25%, rgba(239, 239, 239, 0) 25%, rgba(239, 239, 239, 0) 75%, rgb(239, 239, 239) 75%, rgb(239, 239, 239));
+        }
+        .content_area{
+            display: grid;
+            gap: 2rem;
+            container-type:inline-size;
+            grid-template-columns: 1fr 1fr;
+            
+        }
+        .blog_img{    
+            text-align: center;
+            height: 50cqi;
+        }
+        .blog_img img{
+            height: 50cqi;
+        }
+        .blog_area{
+            width: 70cqw;
+            /* border: 1px solid red; */
+            border-radius: 5px;
+            box-shadow: 10px 10px 8px #888888;
+            opacity: 100;
+            padding: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .more_blogs{
+            display: grid;
+            gap: 0.1cqi;
+            padding: 5px;
+            /* border: 3px dashed green; */
+            container-type:inline-size ;
+            height: 50cqi;
+            overflow: scroll;
+            width: 20cqi;
+
+        }
+        .blog_card{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* border: 1px solid red; */
+            border-radius: 4px;
+            height: 35cqi;
+            /* width: 10cqw; */
+            box-shadow: 4px 4px 8px #888888;
+            overflow:hidden;
+            word-break: break-all;
+            container-type:inline-size;
+
+        }
+        .blog_card_img{
+            height: inherit;
+            width: 42cqw;
+        }
+        .blog_card p {
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+        .text_ar{
+            container-type:inline-size;
+            width:50cqi;
+            height: inherit;
+            padding: 10px;
+        }
+        .text_ar p {
+            font-size: 7cqi;
+        }
+        hr{
+            border: 5px solid black;
+            padding: 0;
+        }
+        h4{
+            text-align: center;
+            text-decoration-line: underline;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+            font-size: 12cqi;
+        }
+        @media (max-width:600px){
+            .content_area{
+                display: grid;
+                grid-template-columns: none;
+            }
+            .blog_area{
+                width: 100%;
+            }
+            .more_blogs{
+                gap:-0.1em;
+                width: 95cqi;
+
+            }
+            .more_blogs h4{
+                font-size: 8.5cqi;
+            }
+            .blog_card{
+                height: 10cqh;
+                width: 100cqw;
+                overflow: visible;
+            }
+            h4{
+                display:inline;
+                margin: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>{{title}}</h1>
+    <hr>
+    <br>
+        <p style="display: inline-block; margin: 5px;" >Author: {{ author }}</p>
+        <p style="display: inline-block;margin-left:70cqw">Date Published: {{ date_posted }}</p>
+    <br>
+    <hr>
+    <div class="content_area">
+        <div class="blog_area">
+        <div class="blog_img">
+            <img src="{{image.url}}" alt="not found">
+        </div>    
+        <hr style="border: 1px solid black;">
+            <p>{{content}}</p>
+        </div>
+        <!-- <hr style="border: 1px solid black;"> -->
+        <div class="more_blogs">
+            <h4>More Blogs.</h4>
+            <!-- <hr style="border: 2px solid black;width: 50cqi;"> -->
+            {%for blog in bloglist%}
+            
+            <div class="blog_card">
+                <div class="text_ar">
+                    <p><a href="/read/{{blog.title}}">{{ blog.title }}</a></p>
+                </div>
+                    <img class="blog_card_img" src="{{blog.image.url}}" alt="">
+            </div>
+            {% endfor %}
+            <!-- <div class="blog_card"></div>
+            <div class="blog_card"></div>
+            <div class="blog_card"></div>
+            <div class="blog_card"></div> -->
+        </div>
+
+    </div>
+</body>
+</html>
